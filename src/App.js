@@ -1,7 +1,7 @@
 import './App.css';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-
+import {Button, TextField} from '@mui/material';
 
 function App() {
   const CLIENT_ID = "2fd84f198e434f5db707ba50f8d4af3f"
@@ -66,11 +66,10 @@ function App() {
         {!token ?
             <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
                 to Spotify</a>
-            : <button onClick={logout}>Logout</button>}
-        <form onSubmit={searchArtists}>
-            <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-            <button type={"submit"}>Search</button>
-        </form>
+            : <Button onClick={logout} variant="contained">Logout</Button>}
+
+        <TextField onChange={e => setSearchKey(e.target.value)}/>
+        <Button onClick={searchArtists} variant="contained">Search</Button>
         {renderArtists()}
       </header>
     </div>
